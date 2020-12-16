@@ -13,7 +13,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Title 
       run: echo Format GO code
-    - name: Go Formatter
-      # You may pin to the exact commit or the version.
-      # uses: sladyn98/auto-go-format@6557e892479fd174506c48cb34017c51399d492b
-      uses: sladyn98/auto-go-format@v0.0.1
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Test
+      run: go test ./...
